@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="orangeStart">#ff854e</color>
+    <color name="orangeMid">#ff9857</color>
+    <color name="orangeEnd">#ffd279</color>
+    <color name="orangeStartTransp">#66fc4a1a</color>
+    <color name="orangeEndTransp">#66f7b733</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="transp">#00ffffff</color>
+    <color name="marrom">#5b3145</color>
+    <color name="vermelho">#ad2c40</color>
+</resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        android:background="@color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_meal_detail"
+        tools:context=".view.mealdetail.MealDetailActivity">
+
+
+    <ScrollView
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <ImageView
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/iv_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"/>
+
+            <View
+                    android:layout_marginTop="-100dp"
+                    android:layout_below="@+id/iv_meal"
+                    android:background="@drawable/detail_gradient"
+                    android:id="@+id/view_gradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+
+            <TextView
+                    android:fontFamily="@font/merriweather_regular"
+                    android:layout_marginTop="-50dp"
+                    android:layout_below="@+id/iv_meal"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:textSize="38sp"
+                    android:textColor="@color/black"
+                    android:text="NOME DA RECEITA GIGANTE"
+                    android:id="@+id/tv_detail_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <ImageButton
+                    android:elevation="2dp"
+                    android:id="@+id/btn_detail_favorite"
+                    android:src="@drawable/ic_favorite_off"
+                    android:layout_margin="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/background_favorite_button_off"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+
+            <TextView
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="center"
+                    android:layout_below="@+id/tv_detail_meal"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/marrom"
+                    android:text="- Categoria -"
+                    android:id="@+id/tv_detail_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:textColor="@color/marrom"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textAlignment="center"
+                    android:layout_below="@+id/tv_detail_category"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="18sp"
+                    android:text="- Area- "
+                    android:id="@+id/tv_detail_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:elevation="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:id="@+id/view_detail_line"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_below="@+id/tv_detail_area"
+                    android:background="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+            <TextView
+                    android:fontFamily="@font/vollkorn_regular"
+                    android:id="@+id/tv_detail_ingredients"
+                    android:layout_below="@+id/view_detail_line"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    android:textColor="@color/vermelho"
+                    android:text="@string/detail_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/tv_detail_ingredients"
+                    android:id="@+id/rv_detail_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:id="@+id/view_detail_line2"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_below="@+id/rv_detail_ingredients"
+                    android:background="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+            <TextView
+                    android:fontFamily="@font/vollkorn_regular"
+                    android:id="@+id/tv_detail_method_label"
+                    android:layout_below="@+id/view_detail_line2"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    android:textColor="@color/vermelho"
+                    android:text="@string/detail_method_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:drawableStart="@drawable/ic_ondemand_video_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_below="@+id/tv_detail_method_label"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="@string/detail_youtube"
+                    android:id="@+id/btn_detail_youtube"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:lineSpacingExtra="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@+id/btn_detail_youtube"
+                    android:id="@+id/tv_detail_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
