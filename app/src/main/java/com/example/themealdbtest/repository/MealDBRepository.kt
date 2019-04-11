@@ -1,8 +1,8 @@
 package com.example.themealdbtest.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.themealdbtest.model.AbstractModel
 import com.example.themealdbtest.model.RandomMealModel
 import retrofit2.Call

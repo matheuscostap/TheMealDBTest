@@ -1,8 +1,7 @@
 package com.example.themealdbtest.view.main
 
-import android.arch.lifecycle.Observer
+
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.view.View
 import com.example.themealdbtest.R
@@ -11,6 +10,10 @@ import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import android.view.WindowManager
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.themealdbtest.model.AbstractModel
+import com.example.themealdbtest.model.RandomMealModel
 import com.example.themealdbtest.view.mealdetail.MealDetailActivity
 import org.jetbrains.anko.intentFor
 
@@ -35,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observarEventos(){
-        viewModel.event.observe(this, Observer { event->
+        viewModel.event.observe(this, Observer<AbstractModel<RandomMealModel>> { event->
             if (event != null){
                 if (event.isLoading){
                     progress_main.visibility = View.VISIBLE

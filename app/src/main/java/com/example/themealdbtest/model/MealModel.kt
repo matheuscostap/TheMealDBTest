@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "meal")
-data class MealModel(@PrimaryKey var idMeal: String? = null,
+data class MealModel(@PrimaryKey var idMeal: String,
                      var strMeal: String? = null,
                      /*var strDrinkAlternate: Any? = null,*/
                      var strCategory: String? = null,

@@ -1,7 +1,7 @@
 package com.example.themealdbtest.view.main
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.themealdbtest.model.AbstractModel
 import com.example.themealdbtest.model.RandomMealModel
 import com.example.themealdbtest.repository.MealDBRepository

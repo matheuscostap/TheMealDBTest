@@ -3,10 +3,10 @@ package com.example.themealdbtest.view.mealdetail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.ViewTreeObserver
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.themealdbtest.R
 import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.IngredientModel
