@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/background_favorite_card"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="250dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="8dp" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+            android:elevation="0dp"
+            app:cardCornerRadius="20dp"
+            android:id="@+id/cardView_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:background="@color/white"
+                android:id="@+id/iv_favorite_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <View
+                android:alpha="0.7"
+                android:background="@drawable/detail_gradient"
+                android:id="@+id/view_gradient_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <TextView
+                android:textStyle="bold"
+                android:id="@+id/tv_favorite_name"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:gravity="bottom"
+                android:fontFamily="@font/merriweather_regular"
+                android:textSize="26dp"
+                android:text="NOME RECEITA GIGANTE"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

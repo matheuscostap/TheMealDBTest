@@ -12,6 +12,8 @@ import android.view.WindowManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.AbstractModel
 import com.example.themealdbtest.model.RandomMealModel
 import com.example.themealdbtest.view.mealdetail.MealDetailActivity
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         observarEventos()
     }
 
+    override fun onResume() {
+        super.onResume()
+        iniciarListaFavoritos()
+    }
+
     private fun observarEventos(){
         viewModel.event.observe(this, Observer<AbstractModel<RandomMealModel>> { event->
             if (event != null){
@@ -56,5 +63,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun iniciarListaFavoritos(){
+        val favoritos = TheMealDBApplication.database?.mealDao()?.retornarFavoritos()
+
+        favoritos?.let {
+            val adapter = FavoriteListAdapter(this,it)
+            rv_main_favorites.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+            rv_main_favorites.adapter = adapter
+        }
     }
 }

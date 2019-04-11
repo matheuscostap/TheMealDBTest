@@ -54,6 +54,10 @@ class MealDetailActivity : AppCompatActivity() {
             abrirYoutube()
         }
 
+        btn_detail_favorite.setOnClickListener {
+            salvarFavorito()
+        }
+
         iniciarListaIngredientes()
         iniciarRecyclerView()
     }
@@ -96,6 +100,10 @@ class MealDetailActivity : AppCompatActivity() {
 
     private fun abrirYoutube(){
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mealModel.strYoutube)))
+    }
+
+    private fun salvarFavorito(){
+        TheMealDBApplication.database?.mealDao()?.salvarFavorito(mealModel)
     }
 
 }
