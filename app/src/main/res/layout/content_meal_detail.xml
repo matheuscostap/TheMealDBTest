@@ -11,7 +11,7 @@
         tools:context=".view.mealdetail.MealDetailActivity">
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -23,6 +23,7 @@
 
 
             <ImageView
+                    android:transitionName="mealImage"
                     android:layout_alignParentTop="true"
                     android:id="@+id/iv_meal"
                     android:layout_width="match_parent"
@@ -116,6 +117,8 @@
                     android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                    android:descendantFocusability="blocksDescendants"
+                    android:focusable="false"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/tv_detail_ingredients"
                     android:id="@+id/rv_detail_ingredients"
@@ -171,5 +174,5 @@
 
 
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

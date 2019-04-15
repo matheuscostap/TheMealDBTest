@@ -11,12 +11,15 @@ import org.koin.android.ext.android.inject
 import android.view.WindowManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.AbstractModel
 import com.example.themealdbtest.model.RandomMealModel
 import com.example.themealdbtest.view.mealdetail.MealDetailActivity
+import kotlinx.android.synthetic.main.content_meal_detail.*
 import org.jetbrains.anko.intentFor
 
 
@@ -69,7 +72,10 @@ class MainActivity : AppCompatActivity() {
         val favoritos = TheMealDBApplication.database?.mealDao()?.retornarFavoritos()
 
         favoritos?.let {
-            val adapter = FavoriteListAdapter(this,it)
+            val adapter = FavoriteListAdapter(this,it){mealModel, view ->
+                startActivity(intentFor<MealDetailActivity>("mealModel" to mealModel),
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this,view,ViewCompat.getTransitionName(view) ?: "").toBundle())
+            }
             rv_main_favorites.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
             rv_main_favorites.adapter = adapter
         }

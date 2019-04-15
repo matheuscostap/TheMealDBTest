@@ -11,8 +11,11 @@ import com.example.themealdbtest.R
 import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.IngredientModel
 import com.example.themealdbtest.model.MealModel
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_meal_detail.*
+import java.lang.Exception
 import kotlin.reflect.full.memberProperties
 
 class MealDetailActivity : AppCompatActivity() {
@@ -30,6 +33,8 @@ class MealDetailActivity : AppCompatActivity() {
             mealModel = it.getSerializable("mealModel") as MealModel
         }
 
+        supportPostponeEnterTransition()
+
         var height = 0
         var width = 0
 
@@ -39,7 +44,14 @@ class MealDetailActivity : AppCompatActivity() {
                 height = iv_meal.measuredHeight
                 width = iv_meal.measuredWidth
 
-                Picasso.get().load(mealModel.strMealThumb).centerCrop().resize(width,height).into(iv_meal)
+                Picasso.get().load(mealModel.strMealThumb).centerCrop().resize(width,height).into(iv_meal,object : Callback{
+                    override fun onSuccess() {
+                        supportStartPostponedEnterTransition()
+                    }
+                    override fun onError(e: Exception?) {
+                        supportStartPostponedEnterTransition()
+                    }
+                })
                 return true
             }
         })
@@ -48,7 +60,7 @@ class MealDetailActivity : AppCompatActivity() {
         tv_detail_category.text = "- ${mealModel.strCategory} -"
         tv_detail_area.text = "- ${mealModel.strArea} -"
         tv_detail_method.text = mealModel.strInstructions
-        rv_detail_ingredients.isClickable = false
+        rv_detail_ingredients.isNestedScrollingEnabled = false
 
         btn_detail_youtube.setOnClickListener {
             abrirYoutube()

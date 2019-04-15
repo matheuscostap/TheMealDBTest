@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.themealdbtest.R
 import com.example.themealdbtest.model.MealModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_favorite.view.*
 
-class FavoriteListAdapter(val ctx: Context, val favorites: List<MealModel>): RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>(){
+class FavoriteListAdapter(val ctx: Context, val favorites: List<MealModel>,val onItemClick: (mealModel: MealModel, view: ImageView) -> Unit): RecyclerView.Adapter<FavoriteListAdapter.FavoriteListViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteListViewHolder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_list_favorite,parent,false)
@@ -38,10 +39,12 @@ class FavoriteListAdapter(val ctx: Context, val favorites: List<MealModel>): Rec
         })
 
         holder.tv_favorite_name.text = mealModel.strMeal
+        holder.item.setOnClickListener { onItemClick(mealModel,holder.iv_favorite_image) }
+
     }
 
-    inner class FavoriteListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val iv_favorite_image = itemView.iv_favorite_image
-        val tv_favorite_name = itemView.tv_favorite_name
+    inner class FavoriteListViewHolder(val item: View): RecyclerView.ViewHolder(item){
+        val iv_favorite_image = item.iv_favorite_image
+        val tv_favorite_name = item.tv_favorite_name
     }
 }

@@ -17,6 +17,7 @@
             android:layout_height="match_parent">
 
         <ImageView
+                android:transitionName="mealImage"
                 android:background="@color/white"
                 android:id="@+id/iv_favorite_image"
                 android:layout_width="match_parent"
