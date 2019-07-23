@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.AbstractModel
 import com.example.themealdbtest.model.RandomMealModel
+import com.example.themealdbtest.repository.room.TheMealDBDataBase
 import com.example.themealdbtest.view.mealdetail.MealDetailActivity
 import kotlinx.android.synthetic.main.content_meal_detail.*
 import org.jetbrains.anko.intentFor
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     //Injection
     private val viewModel: MainActivityViewModel by inject()
+    private val database: TheMealDBDataBase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,15 +71,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun iniciarListaFavoritos(){
-        val favoritos = TheMealDBApplication.database?.mealDao()?.retornarFavoritos()
+        val favoritos = database.mealDao().retornarFavoritos()
 
-        favoritos?.let {
-            val adapter = FavoriteListAdapter(this,it){mealModel, view ->
-                startActivity(intentFor<MealDetailActivity>("mealModel" to mealModel),
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(this,view,ViewCompat.getTransitionName(view) ?: "").toBundle())
+        favoritos.observe(this, Observer {meals ->
+            if (meals.isNotEmpty()){
+                val adapter = FavoriteListAdapter(this,meals){mealModel, view ->
+                    startActivity(intentFor<MealDetailActivity>("mealModel" to mealModel),
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(this,view,ViewCompat.getTransitionName(view) ?: "").toBundle())
+                }
+                rv_main_favorites.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+                rv_main_favorites.adapter = adapter
             }
-            rv_main_favorites.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-            rv_main_favorites.adapter = adapter
-        }
+        })
     }
 }

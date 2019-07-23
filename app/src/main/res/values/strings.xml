@@ -6,4 +6,6 @@
     <string name="detail_ingredients">Ingredients</string>
     <string name="detail_method_label">Method</string>
     <string name="detail_youtube">Watch on YouTube</string>
+    <string name="detail_receita_favorito">Receita marcada como favorita</string>
+    <string name="detail_receita_favorito_erro">Erro ao marcar receita como favorita</string>
 </resources>

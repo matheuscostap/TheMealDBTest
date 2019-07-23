@@ -9,19 +9,10 @@ import org.koin.android.ext.android.startKoin
 
 class TheMealDBApplication: Application(){
 
-    companion object {
-        var database: TheMealDBDataBase? = null
-    }
-
     override fun onCreate() {
         super.onCreate()
 
         //Koin
-        startKoin(this, listOf(app_module,retrofit_client_module))
-
-        //Room
-        database = Room.databaseBuilder(this, TheMealDBDataBase::class.java, "themealdb").allowMainThreadQueries().build()
-
-
+        startKoin(this, listOf(app_module,retrofit_client_module), loadPropertiesFromFile = true)
     }
 }

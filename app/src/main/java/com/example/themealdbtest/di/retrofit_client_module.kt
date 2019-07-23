@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 val retrofit_client_module = module {
     single { createOkHttpCLient() }
-    single { createWebService<MealDBDataSource>(get(),"https://www.themealdb.com/api/json/v1/1/")}
+    single { createWebService<MealDBDataSource>(get(),getProperty(Properties.BASE_URL))}
 }
 
 object Properties{

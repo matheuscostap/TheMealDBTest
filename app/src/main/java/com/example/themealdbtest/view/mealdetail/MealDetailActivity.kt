@@ -6,23 +6,29 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.themealdbtest.R
 import com.example.themealdbtest.TheMealDBApplication
 import com.example.themealdbtest.model.IngredientModel
 import com.example.themealdbtest.model.MealModel
+import com.example.themealdbtest.repository.room.TheMealDBDataBase
+import com.example.themealdbtest.repository.room.TheMealDBDataBase_Impl
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Callback
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.content_meal_detail.*
+import org.koin.android.ext.android.inject
 import java.lang.Exception
 import kotlin.reflect.full.memberProperties
 
 class MealDetailActivity : AppCompatActivity() {
 
+    private val viewModel: MealDetailViewModel by inject()
     lateinit var mealModel: MealModel
-    val ingredientes = mutableListOf<IngredientModel>()
-    val ingredientImageBase = "https://www.themealdb.com/images/ingredients/*-Small.png"
+    private val ingredientes = mutableListOf<IngredientModel>()
+    private val ingredientImageBase = "https://www.themealdb.com/images/ingredients/*-Small.png"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +73,7 @@ class MealDetailActivity : AppCompatActivity() {
         }
 
         btn_detail_favorite.setOnClickListener {
+            observarVM()
             salvarFavorito()
         }
 
@@ -104,6 +111,16 @@ class MealDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun observarVM(){
+        viewModel.event.observe(this, Observer {
+            if (it.isSuccess){
+                Snackbar.make(btn_detail_favorite, R.string.detail_receita_favorito, Snackbar.LENGTH_LONG).show()
+            }else if (it.erro != null){
+                Snackbar.make(btn_detail_favorite, R.string.detail_receita_favorito_erro, Snackbar.LENGTH_LONG).show()
+            }
+        })
+    }
+
     private fun iniciarRecyclerView(){
         val adapter = IngredientListAdapter(this,ingredientes)
         rv_detail_ingredients.layoutManager = GridLayoutManager(this,3)
@@ -115,7 +132,7 @@ class MealDetailActivity : AppCompatActivity() {
     }
 
     private fun salvarFavorito(){
-        TheMealDBApplication.database?.mealDao()?.salvarFavorito(mealModel)
+        viewModel.salvarFavorito(mealModel)
     }
 
 }
